@@ -1,0 +1,110 @@
+{
+  "experiment_mode": "CPU_LIMITED",
+  "environment": {
+    "python": "3.13.15",
+    "cpu_count": 2,
+    "ram_gb": 12.7,
+    "gpu": "None",
+    "mode": "CPU_LIMITED",
+    "cpu_limit_pct": 25
+  },
+  "config": {
+    "test_size": 0.15,
+    "n_warmup": 10,
+    "n_baseline_iters": 100,
+    "n_xai_iters": 100,
+    "cnn_epochs": 15,
+    "cnn_batch_size": 128,
+    "cnn_background_size": 20,
+    "n_perturb_lime": 100,
+    "n_lime_samples_xgb": 10,
+    "n_lime_samples_cnn": 3,
+    "n_kernel_samples": 10
+  },
+  "dataset": "CICIoT2023",
+  "detection": {
+    "XGBoost": {
+      "accuracy": 0.923348555847755,
+      "precision": 0.9226898587915568,
+      "recall": 0.923348555847755,
+      "f1": 0.9230032427636886,
+      "roc_auc": 0.9688292815526693
+    },
+    "CNN": {
+      "accuracy": 0.912248288398358,
+      "precision": 0.9095920618457461,
+      "recall": 0.912248288398358,
+      "f1": 0.9106921069673696,
+      "roc_auc": 0.9601517103570706
+    }
+  },
+  "training_time_s": {
+    "XGBoost": 0.0,
+    "CNN": 0.0
+  },
+  "latency_ms": {
+    "XGBoost_baseline": {
+      "mean": 0.8693324333332697,
+      "std": 0.49303120312152265,
+      "ci95": [
+        0.7660690470369655,
+        0.9725958196295739
+      ]
+    },
+    "XGBoost_TreeSHAP": {
+      "mean": 2.8488448777779576,
+      "std": 0.9831317701608533,
+      "ci95": [
+        2.6429319150292967,
+        3.0547578405266185
+      ]
+    },
+    "XGBoost_KernelSHAP": {
+      "mean": 80.60493779999973,
+      "std": 7.424693539940171,
+      "ci95": [
+        75.29363200135651,
+        85.91624359864295
+      ]
+    },
+    "XGBoost_LIME": {
+      "mean": 5.16385700000086,
+      "std": 0.6518885166206511
+    },
+    "CNN_baseline_forward": {
+      "mean": 9.61907043333328,
+      "std": 0.525209216965982,
+      "ci95": [
+        9.509067492516225,
+        9.729073374150333
+      ]
+    },
+    "CNN_GradientSHAP": {
+      "mean": 50.30572237777764,
+      "std": 4.221645007260739,
+      "ci95": [
+        49.42151594940037,
+        51.18992880615491
+      ]
+    },
+    "CNN_LIME": {
+      "mean": 113.17935766666665,
+      "std": 16.047154815862733
+    }
+  },
+  "memory_peak_mb": {
+    "XGBoost_baseline": 0.010033607482910156,
+    "CNN_baseline": 0.13531875610351562,
+    "XGBoost_TreeSHAP": 0.013706207275390625,
+    "CNN_GradientSHAP": 0.21573448181152344
+  },
+  "energy_proxy_J_per_1k": {
+    "XGBoost Baseline": 4.3466621666663485,
+    "XGBoost + TreeSHAP": 14.244224388889787,
+    "XGBoost + KernelSHAP": 403.02468899999866,
+    "XGBoost + LIME": 25.8192850000043,
+    "CNN Baseline (forward)": 48.095352166666395,
+    "CNN + GradientSHAP": 251.5286118888882,
+    "CNN + LIME": 565.8967883333332
+  }
+}

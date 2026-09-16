@@ -1,0 +1,110 @@
+{
+  "experiment_mode": "cPU",
+  "environment": {
+    "python": "3.13.15",
+    "cpu_count": 2,
+    "ram_gb": 12.7,
+    "gpu": "None",
+    "mode": "cPU",
+    "cpu_limit_pct": 100
+  },
+  "config": {
+    "test_size": 0.15,
+    "n_warmup": 10,
+    "n_baseline_iters": 100,
+    "n_xai_iters": 100,
+    "cnn_epochs": 15,
+    "cnn_batch_size": 128,
+    "cnn_background_size": 20,
+    "n_perturb_lime": 100,
+    "n_lime_samples_xgb": 10,
+    "n_lime_samples_cnn": 3,
+    "n_kernel_samples": 10
+  },
+  "dataset": "CICIoT2023",
+  "detection": {
+    "XGBoost": {
+      "accuracy": 0.923348555847755,
+      "precision": 0.9226898587915568,
+      "recall": 0.923348555847755,
+      "f1": 0.9230032427636886,
+      "roc_auc": 0.9688292815526693
+    },
+    "CNN": {
+      "accuracy": 0.912248288398358,
+      "precision": 0.9095920618457461,
+      "recall": 0.912248288398358,
+      "f1": 0.9106921069673696,
+      "roc_auc": 0.9601517103570706
+    }
+  },
+  "training_time_s": {
+    "XGBoost": 18.820948296999973,
+    "CNN": 2045.7483943299999
+  },
+  "latency_ms": {
+    "XGBoost_baseline": {
+      "mean": 0.8786516666633462,
+      "std": 0.5062460193388894,
+      "ci95": [
+        0.7726204906952142,
+        0.9846828426314781
+      ]
+    },
+    "XGBoost_TreeSHAP": {
+      "mean": 2.3039731222322897,
+      "std": 0.3231207120718156,
+      "ci95": [
+        2.2362967993144793,
+        2.3716494451501
+      ]
+    },
+    "XGBoost_KernelSHAP": {
+      "mean": 81.0023476999504,
+      "std": 4.9319238377738746,
+      "ci95": [
+        77.47426192279035,
+        84.53043347711046
+      ]
+    },
+    "XGBoost_LIME": {
+      "mean": 16.864147799924467,
+      "std": 4.262731430630399
+    },
+    "CNN_baseline_forward": {
+      "mean": 8.700964933344343,
+      "std": 0.29075117854239024,
+      "ci95": [
+        8.640068277968703,
+        8.761861588719983
+      ]
+    },
+    "CNN_GradientSHAP": {
+      "mean": 45.187229966667374,
+      "std": 1.35716030377003,
+      "ci95": [
+        44.90297824420657,
+        45.471481689128176
+      ]
+    },
+    "CNN_LIME": {
+      "mean": 131.25903600014985,
+      "std": 12.264577869030305
+    }
+  },
+  "memory_peak_mb": {
+    "XGBoost_baseline": 0.010033607482910156,
+    "CNN_baseline": 0.13436317443847656,
+    "XGBoost_TreeSHAP": 0.013751983642578125,
+    "CNN_GradientSHAP": 0.2154836654663086
+  },
+  "energy_proxy_J_per_1k": {
+    "XGBoost Baseline": 4.393258333316731,
+    "XGBoost + TreeSHAP": 11.519865611161448,
+    "XGBoost + KernelSHAP": 405.011738499752,
+    "XGBoost + LIME": 84.32073899962234,
+    "CNN Baseline (forward)": 43.50482466672172,
+    "CNN + GradientSHAP": 225.93614983333686,
+    "CNN + LIME": 656.2951800007493
+  }
+}
